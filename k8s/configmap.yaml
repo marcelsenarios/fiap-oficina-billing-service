@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: billing-service-config
+  namespace: default
+data:
+  SERVER_PORT: "8082"
+  DATABASE_URL: "jdbc:postgresql://postgres-billing:5432/oficina_billing_db"
+  RABBITMQ_HOST: "rabbitmq"
+  RABBITMQ_PORT: "5672"
+  MERCADOPAGO_NOTIFICATION_URL: "https://api.oficina.com/api/v1/webhook/mercadopago"

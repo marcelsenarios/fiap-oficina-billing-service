@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-oficina-billing-service
+  namespace: default
+  labels:
+    app: fiap-oficina-billing-service
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fiap-oficina-billing-service
+  template:
+    metadata:
+      labels:
+        app: fiap-oficina-billing-service
+    spec:
+      containers:
+        - name: billing-service
+          image: marcelsenarios/fiap-oficina-billing-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+              name: http
+          envFrom:
+            - configMapRef:
+                name: billing-service-config
+            - secretRef:
+                name: billing-service-secrets
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1024Mi"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8082
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8082
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 2
