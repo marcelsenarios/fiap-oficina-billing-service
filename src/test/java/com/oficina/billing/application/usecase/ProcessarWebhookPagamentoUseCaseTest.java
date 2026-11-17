@@ -69,7 +69,7 @@ class ProcessarWebhookPagamentoUseCaseTest {
 
         verify(orcamentoRepository, times(1)).salvar(any(Orcamento.class));
         verify(eventPublisher, times(1)).publicarStatusPagamento(argThat(event ->
-                "APROVADO".equals(event.getStatusPagamento()) && 1L.equals(event.getOsId())));
+                "APROVADO".equals(event.getStatusPagamento()) && Long.valueOf(1L).equals(event.getOsId())));
     }
 
     @Test
@@ -83,6 +83,6 @@ class ProcessarWebhookPagamentoUseCaseTest {
 
         verify(orcamentoRepository, times(1)).salvar(any(Orcamento.class));
         verify(eventPublisher, times(1)).publicarStatusPagamento(argThat(event ->
-                "RECUSADO".equals(event.getStatusPagamento()) && 1L.equals(event.getOsId())));
+                "RECUSADO".equals(event.getStatusPagamento()) && Long.valueOf(1L).equals(event.getOsId())));
     }
 }

@@ -55,6 +55,7 @@ public class OrcamentoCucumberSteps {
     }
 
     @Então("o status do orçamento deve ser {string}")
+    @Então("o status do orçamento deve ser atualizado para {string}")
     public void oStatusDoOrcamentoDeveSer(String statusEsperado) {
         assertEquals(StatusOrcamento.valueOf(statusEsperado), orcamento.getStatus());
     }

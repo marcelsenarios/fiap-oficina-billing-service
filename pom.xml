@@ -90,12 +90,6 @@
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-spring</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
@@ -177,6 +171,8 @@
 								<exclude>**/config/**</exclude>
 								<exclude>**/dto/**</exclude>
 								<exclude>**/event/**</exclude>
+								<exclude>**/persistence/entity/**</exclude>
+								<exclude>**/messaging/rabbitmq/RabbitMQConfig.class</exclude>
 								<exclude>**/OficinaBillingApplication.class</exclude>
 							</excludes>
 						</configuration>
